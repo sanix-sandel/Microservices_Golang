@@ -3,6 +3,7 @@ package rest
 import (
 	"net/http"
 
+	"github.com/Microservices/lib/persistence"
 	"github.com/gorilla/mux"
 )
 

@@ -1,5 +1,7 @@
 package dblayer
 
+import "github.com/Microservices/lib/persistence/mongolayer"
+
 type DBTYPE string
 
 const (
