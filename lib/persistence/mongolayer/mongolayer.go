@@ -1,7 +1,8 @@
 package mongolayer
 
 import (
-	"gopkg.in/mgo.v2"
+	"github.com/Microservices/lib/persistence"
+	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
