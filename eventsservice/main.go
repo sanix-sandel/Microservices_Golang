@@ -6,6 +6,8 @@ import (
 	"log"
 
 	"github.com/Microservices/eventsservice/rest"
+	"github.com/Microservices/lib/configuration"
+	"github.com/Microservices/lib/persistence/dblayer"
 )
 
 func main() {
@@ -19,5 +21,5 @@ func main() {
 	dbhandler, _ := dblayer.NewPersistenceLayer(config.Databasetype, config.DBConnection)
 
 	//start Restful API
-	log.Fatal(rest.ServeAPI(config.RestFulEndpoint, dbhandler))
+	log.Fatal(rest.ServeAPI(config.RestfulEndpoint, dbhandler))
 }
