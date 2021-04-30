@@ -7,6 +7,7 @@ import (
 
 	"github.com/Microservices/lib/msgqueue"
 	"github.com/Microservices/lib/msgqueue/amqp"
+	"github.com/Microservices/lib/msgqueue/kafka"
 )
 
 func NewEventListenerFromEnvironment() (msgqueue.EventListener, error) {

@@ -8,6 +8,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Microservices/contracts"
+	"github.com/Microservices/lib/msgqueue"
 	"github.com/Microservices/lib/persistence"
 	"github.com/gorilla/mux"
 )
@@ -17,7 +19,7 @@ type eventServiceHandler struct {
 	eventEmitter msgqueue.EventEmitter
 }
 
-func NewEventHandler(databasehandler persistence.DatabaseHandler) *eventServiceHandler {
+func NewEventHandler(databasehandler persistence.DatabaseHandler, eventEmitter msgqueue.EventEmitter) *eventServiceHandler {
 	return &eventServiceHandler{
 		dbhandler:    databasehandler,
 		eventEmitter: eventEmitter,
@@ -65,6 +67,27 @@ func (eh *eventServiceHandler) findEventHandler(w http.ResponseWriter, r *http.R
 	w.Header().Set("content-Type", "application/json;charset=utf8")
 	json.NewEncoder(w).Encode(&event)
 
+}
+
+func (eh *eventServiceHandler) oneEventHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	eventID, ok := vars["eventID"]
+	if !ok {
+		w.WriteHeader(400)
+		fmt.Fprint(w, "missing route parameter 'eventID'")
+		return
+	}
+
+	eventIDBytes, _ := hex.DecodeString(eventID)
+	event, err := eh.dbhandler.FindEvent(eventIDBytes)
+	if err != nil {
+		w.WriteHeader(404)
+		fmt.Fprintf(w, "event with id %s was not found", eventID)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json; charset=utf8")
+	json.NewEncoder(w).Encode(&event)
 }
 
 func (eh *eventServiceHandler) AllEventHandler(w http.ResponseWriter, r *http.Request) {

@@ -1,6 +1,9 @@
 package dblayer
 
-import "github.com/Microservices/lib/persistence/mongolayer"
+import (
+	"github.com/Microservices/lib/persistence"
+	"github.com/Microservices/lib/persistence/mongolayer"
+)
 
 type DBTYPE string
 

@@ -7,6 +7,7 @@ import (
 	"github.com/Microservices/bookingservice/rest"
 	"github.com/Microservices/lib/configuration"
 	"github.com/Microservices/lib/msgqueue"
+	msgqueue_amqp "github.com/Microservices/lib/msgqueue/amqp"
 	"github.com/Microservices/lib/msgqueue/kafka"
 	"github.com/Microservices/lib/persistence/dblayer"
 	"github.com/Shopify/sarama"

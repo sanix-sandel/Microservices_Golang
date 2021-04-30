@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/Microservices/contracts"
 	"github.com/mitchellh/mapstructure"
 )
 

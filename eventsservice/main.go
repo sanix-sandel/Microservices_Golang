@@ -6,6 +6,9 @@ import (
 
 	"github.com/Microservices/eventsservice/rest"
 	"github.com/Microservices/lib/configuration"
+	"github.com/Microservices/lib/msgqueue"
+	msgqueue_amqp "github.com/Microservices/lib/msgqueue/amqp"
+	"github.com/Microservices/lib/msgqueue/kafka"
 	"github.com/Microservices/lib/persistence/dblayer"
 	"github.com/Shopify/sarama"
 	"github.com/streadway/amqp"
@@ -33,7 +36,7 @@ func main() {
 		}
 	case "kafka":
 		conf := sarama.NewConfig()
-		conf.Producer.Return.Success = true
+		conf.Producer.Return.Successes = true
 		conn, err := sarama.NewClient(config.KafkaMessageBrokers, conf)
 		if err != nil {
 			panic(err)

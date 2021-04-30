@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 
+	amqphelper "github.com/Microservices/lib/helper/amqp"
 	"github.com/Microservices/lib/msgqueue"
 	"github.com/streadway/amqp"
 )
